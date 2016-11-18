@@ -10,8 +10,8 @@ packages:
     git: https://github.com/joehillen/slack-bot-async
     commit: e0e595a00782cf18ee365dfe77bc978974edfb43
 - location:
-    git: https://github.com/joehillen/slack-api-types
-    commit: b53222079ef8fbd1f9abbd1ea862d3db0790380f
+    git: https://github.com/narkq/slack-api-types
+    commit: 5a3426ab34cbec0c268c954d6c86622d19f40be0
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps: []
