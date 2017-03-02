@@ -11,7 +11,7 @@ packages:
     commit: e0e595a00782cf18ee365dfe77bc978974edfb43
 - location:
     git: https://github.com/narkq/slack-api-types
-    commit: 5a3426ab34cbec0c268c954d6c86622d19f40be0
+    commit: e0a8eb72bcc40ca3c439777b4e2a46330fbe3fbd
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps: []
