@@ -1,6 +1,7 @@
 module Options where
 
 import Options.Applicative
+import Data.Semigroup ((<>))
 
 
 options :: IO (Bool, FilePath)

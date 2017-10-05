@@ -1,7 +1,7 @@
 # For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
 
 # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
-resolver: lts-5.9
+resolver: lts-9.6
 
 # Local packages, usually specified by relative directory name
 packages:
@@ -9,9 +9,11 @@ packages:
 - location:
     git: https://github.com/narkq/slack-bot-async
     commit: 2803c779c6bd36391541d240ec9b377656f2a823
+  extra-dep: true
 - location:
     git: https://github.com/narkq/slack-api-types
     commit: e0a8eb72bcc40ca3c439777b4e2a46330fbe3fbd
+  extra-dep: true
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps: []

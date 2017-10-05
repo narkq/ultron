@@ -55,7 +55,7 @@ runUltron debug cfg =
 ultron :: UltronCfg -> SlackBot
 ultron cfg (Message cid (UserComment uid) msg _ _ _) =
   unless (cid ^. getId /= channel cfg) $
-    case dropPrefix (prefix cfg) msg of
+    case T.stripPrefix (prefix cfg) msg of
       Nothing   -> return ()
       Just msg' ->
         case parseCommand msg' of

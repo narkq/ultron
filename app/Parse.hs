@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 module Parse where
 
 import           Data.Text (Text)
@@ -7,20 +6,7 @@ import           Text.Megaparsec
 import           Text.Megaparsec.Text
 
 
-dropPrefix :: Text -> Text -> Maybe Text
-dropPrefix _       ""  = Nothing
-dropPrefix ""      msg = Just msg
-dropPrefix prefix' msg =
-  if lenPrefix > T.length msg
-     then Nothing
-     else if T.take lenPrefix msg /= prefix'
-             then Nothing
-             else Just (T.drop lenPrefix msg)
- where
-  lenPrefix =  T.length prefix'
-
-
-parseCommand :: Text -> Either ParseError (Text, [Text])
+parseCommand :: Text -> Either (ParseError (Token Text) Dec) (Text, [Text])
 parseCommand msg = parse commandParser "" msg
 
 
