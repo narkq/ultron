@@ -16,6 +16,7 @@ import           Data.Text (Text)
 import qualified Data.Text as T
 import           Data.Text.Lens (unpacked)
 import qualified System.Directory as D
+import           System.Environment (getEnvironment)
 import           System.Exit (ExitCode(..))
 import           System.FilePath ((</>))
 import           System.Process (proc, CreateProcess(..))
@@ -102,14 +103,14 @@ runCommand cid uid dirpaths cmd args = handle handler go
                                             , s
                                             , "```"
                                             ]) <> "\n"
-  mkProc bin = (proc bin (map T.unpack args))
-               { env = Just [ ("ULTRON_CID", (cid ^. getId . unpacked))
-                            , ("ULTRON_UID", (uid ^. getId . unpacked))
-                            ]
+  mkEnv parentEnv = ("ULTRON_CID", (cid ^. getId . unpacked)) : ("ULTRON_UID", (uid ^. getId . unpacked)) : parentEnv
+  mkProc bin parentEnv = (proc bin (map T.unpack args))
+               { env = Just (mkEnv parentEnv)
                , close_fds = True
                }
   runbin bin = do
-    (ec, stdout, stderr) <- PT.readCreateProcessWithExitCode (mkProc bin) ""
+    parentEnv <- getEnvironment
+    (ec, stdout, stderr) <- PT.readCreateProcessWithExitCode (mkProc bin parentEnv) ""
     return $ case ec of
                ExitSuccess        -> stdout
                ExitFailure errNum -> cmdErrorResponse stdout stderr errNum
