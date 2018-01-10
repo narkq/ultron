@@ -8,7 +8,7 @@ packages:
 - '.'
 - location:
     git: https://github.com/narkq/slack-bot-async
-    commit: 2803c779c6bd36391541d240ec9b377656f2a823
+    commit: 8d59f2504fd34cfce05878a7b31cd877d54d03fa
   extra-dep: true
 - location:
     git: https://github.com/narkq/slack-api-types
