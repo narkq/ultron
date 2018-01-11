@@ -2,11 +2,14 @@ module Parse where
 
 import           Data.Text (Text)
 import qualified Data.Text as T
+import           Data.Void (Void)
 import           Text.Megaparsec
-import           Text.Megaparsec.Text
+import           Text.Megaparsec.Char
 
 
-parseCommand :: Text -> Either (ParseError (Token Text) Dec) (Text, [Text])
+type Parser = Parsec Void Text
+
+parseCommand :: Text -> Either (ParseError (Token Text) Void) (Text, [Text])
 parseCommand msg = parse commandParser "" msg
 
 
